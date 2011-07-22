@@ -1,0 +1,38 @@
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+version = '0.0.1'
+group = 'com.bowerstudios'
+
+sourceCompatibility = '1.5'
+targetCompatibility = '1.5'
+
+manifest.mainAttributes(
+                                            'Provider': group,
+                                            'Implementation-Version': version,
+                                            'Built-With': ('gradle-' + project.getGradle().getGradleVersion()),
+                                            'Class-Path': '.'
+                                            )
+                                            
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+configurations {
+    compile
+    runtime
+}
+
+dependencies {
+
+    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.1'
+    testCompile group: 'junit', name: 'junit', version: '4.7'
+    
+    //logging
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.5.11'
+    
+    //database
+    compile group: 'berkeleydb', name:'je', version:'3.2.76'
+}
