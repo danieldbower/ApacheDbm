@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/main/groovy"/>
 	<classpathentry kind="src" path="src/test/groovy"/>
-	<classpathentry kind="con" path="GROOVY_DSL_SUPPORT" exported="true"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry sourcepath="/home/daniel/.gradle/cache/junit/junit/sources/junit-4.7-sources.jar" kind="lib" path="/home/daniel/.gradle/cache/junit/junit/jars/junit-4.7.jar" exported="true"/>
-	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/antlr/antlr/jars/antlr-2.7.7.jar" exported="true"/>
-	<classpathentry sourcepath="/home/daniel/.gradle/cache/ch.qos.logback/logback-core/sources/logback-core-0.9.29-sources.jar" kind="lib" path="/home/daniel/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.29.jar" exported="true"/>
-	<classpathentry sourcepath="/home/daniel/.gradle/cache/org.codehaus.groovy/groovy/sources/groovy-1.8.1-sources.jar" kind="lib" path="/home/daniel/.gradle/cache/org.codehaus.groovy/groovy/jars/groovy-1.8.1.jar" exported="true"/>
-	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm-commons/jars/asm-commons-3.2.jar" exported="true"/>
-	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm-util/jars/asm-util-3.2.jar" exported="true"/>
-	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm-tree/jars/asm-tree-3.2.jar" exported="true"/>
-	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/berkeleydb/je/jars/je-3.2.76.jar" exported="true"/>
-	<classpathentry sourcepath="/home/daniel/.gradle/cache/ch.qos.logback/logback-classic/sources/logback-classic-0.9.29-sources.jar" kind="lib" path="/home/daniel/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.29.jar" exported="true"/>
-	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm-analysis/jars/asm-analysis-3.2.jar" exported="true"/>
-	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm/jars/asm-3.2.jar" exported="true"/>
-	<classpathentry sourcepath="/home/daniel/.gradle/cache/org.slf4j/slf4j-api/sources/slf4j-api-1.6.1-sources.jar" kind="lib" path="/home/daniel/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.1.jar" exported="true"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/junit/junit/jars/junit-4.7.jar" sourcepath="/home/daniel/.gradle/cache/junit/junit/sources/junit-4.7-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/antlr/antlr/jars/antlr-2.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.29.jar" sourcepath="/home/daniel/.gradle/cache/ch.qos.logback/logback-core/sources/logback-core-0.9.29-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/org.codehaus.groovy/groovy/jars/groovy-1.8.1.jar" sourcepath="/home/daniel/.gradle/cache/org.codehaus.groovy/groovy/sources/groovy-1.8.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/asm/asm-commons/jars/asm-commons-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/asm/asm-util/jars/asm-util-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/asm/asm-tree/jars/asm-tree-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/berkeleydb/je/jars/je-3.2.76.jar" sourcepath="/data/code/java/lib/je-3.2.76-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.29.jar" sourcepath="/home/daniel/.gradle/cache/ch.qos.logback/logback-classic/sources/logback-classic-0.9.29-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/asm/asm-analysis/jars/asm-analysis-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/asm/asm/jars/asm-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.1.jar" sourcepath="/home/daniel/.gradle/cache/org.slf4j/slf4j-api/sources/slf4j-api-1.6.1-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
