@@ -1,0 +1,28 @@
+dbm syntax:
+Usage: dbmmanage [enc] dbname command [username [pw [group[,group] [comment]]]]
+
+    where enc is  -d for crypt encryption (default except on Win32, Netware)
+                  -m for MD5 encryption (default on Win32, Netware)
+                  -s for SHA1 encryption
+                  -p for plaintext
+
+    command is one of: add|adduser|check|delete|import|update|view
+
+    pw of . for update command retains the old password
+    pw of - (or blank) for update command prompts for the password
+
+    groups or comment of . (or blank) for update command retains old values
+    groups or comment of - for update command clears the existing value
+    groups or comment of - for add and adduser commands is the empty value
+
+
+examples:
+dbmmanage /etc/apache2/.htpasswd view
+dbmmanage /etc/apache2/.htpasswd view username
+dbmmanage /etc/apache2/.htpasswd adduser username password noaccessyet
+dbmmanage /etc/apache2/.htpasswd delete username
+dbmmanage /etc/apache2/.htpasswd update username . group1,group2,group3
+dbmmanage /etc/apache2/.htpasswd check username password
+
+
+
