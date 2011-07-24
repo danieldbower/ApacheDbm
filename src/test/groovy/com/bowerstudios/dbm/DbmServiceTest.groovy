@@ -34,10 +34,12 @@ class DbmServiceTest {
 		assertTrue(true)
 	}
 	
-	@Ignore
 	@Test
-	public void testReadDbm(){
-		
+	public void readAllRecordsFromDbm(){
+		Map data = service.readAllRecordsFromDbm(testDbm)
+		assertNotNull(data)
+		assertEquals(1, data.size())
+		logger.info(data.toString())
 	}
 
 }
