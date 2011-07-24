@@ -15,7 +15,7 @@
 	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm-tree/jars/asm-tree-3.2.jar" exported="true"/>
 	<classpathentry sourcepath="/home/daniel/.gradle/cache/ch.qos.logback/logback-classic/sources/logback-classic-0.9.29-sources.jar" kind="lib" path="/home/daniel/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.29.jar" exported="true"/>
 	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm-analysis/jars/asm-analysis-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/data/code/groovy/projects/workspace/apacheDbm/lib/libdb4.8-java-4.8.30.jar" exported="true"/>
 	<classpathentry kind="lib" path="/home/daniel/.gradle/cache/asm/asm/jars/asm-3.2.jar" exported="true"/>
-	<classpathentry kind="lib" path="/data/code/groovy/projects/workspace/dbm_experiments/lib/libdb4.8-java-4.8.30.jar" exported="true"/>
 	<classpathentry sourcepath="/home/daniel/.gradle/cache/org.slf4j/slf4j-api/sources/slf4j-api-1.6.1-sources.jar" kind="lib" path="/home/daniel/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.1.jar" exported="true"/>
 </classpath>
