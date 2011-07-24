@@ -12,35 +12,99 @@ import com.sleepycat.db.DatabaseType;
 import com.sleepycat.db.LockMode;
 import com.sleepycat.db.OperationStatus;
 
+
+/**
+ * Manage a DBM file that is used to authenticate with the Apache Web Server
+ * @author Daniel Bower
+ *
+ */
 class DbmService {
 
 	final Logger logger = LoggerFactory.getLogger(DbmService.class);
 	
-	Map readAllRecordsFromDbm(String location){
-		Map result = [:]
+	/**
+	 * Read all the user records in the file at location, and return them as a list
+	 */
+	List readAllRecordsFromDbm(String location){
+		List result = []
 			
 		withDbmCursor(location){ Cursor cursor ->
 			// Cursors need a pair of DatabaseEntry objects to operate. These hold
 			// the key and data found at any given position in the database.
-			DatabaseEntry foundKey = new DatabaseEntry();
-			DatabaseEntry foundData = new DatabaseEntry();
+			DatabaseEntry key = new DatabaseEntry();
+			DatabaseEntry value = new DatabaseEntry();
 			
 			// To iterate, just call getNext() until the last database record has
 			// been read. All cursor operations return an OperationStatus, so just
 			// read until we no longer see OperationStatus.SUCCESS
-			while (cursor.getNext(foundKey, foundData, LockMode.DEFAULT) == OperationStatus.SUCCESS) {
-					String keyString = new String(foundKey.getData(), "UTF-8")
-					String dataString = new String(foundData.getData(), "UTF-8")
-					result.put(keyString, dataString)
+			while (cursor.getNext(key, value, LockMode.DEFAULT) == OperationStatus.SUCCESS) {
+				result.add(createUserRecordFromDatabaseEntries(null, key, value))
 			}
 		}
 		
 		return result
 	}
 	
+	/**
+	 * Get a user record with username  from the file at location
+	 */
+	Map getUserRecordFromDbm(String location, String username){
+		Map result = null
+		
+		Database dbm = openDbm(location)
+		try {
+			DatabaseEntry userDataEntry = new DatabaseEntry()
+			OperationStatus opStatus = dbm.get(null, 
+				new DatabaseEntry(username.getBytes("UTF-8")), 
+				userDataEntry , LockMode.DEFAULT)
+			
+			if(opStatus == OperationStatus.SUCCESS){
+				result = createUserRecordFromDatabaseEntries(username, null, userDataEntry)
+			}else{
+				logger.debug("User username not found")
+			}
+			
+		} catch (DatabaseException dbe){
+			logger.error("Error in close: " + dbe.toString());
+			
+		} finally {
+			if(dbm){
+				closeDbm(dbm)
+			}
+		}
+		
+		return result
+	}
 	
+	/**
+	 * Formats the response from the database in the given format
+	 */
+	Map createUserRecordFromDatabaseEntries(String username, DatabaseEntry key, DatabaseEntry value){
+		if(!username && key){
+			username = new String(key.getData(), "UTF-8")
+		}else if(!username && !key){
+			logger.error("Either username or key must be provided")
+			return null
+		}
+		
+		Map result = [:]
+		
+		List<String> userData = new String(value.getData(), "UTF-8").tokenize(':')
+		String encodedPassword = userData[0]
+		List<String> groups = (userData[1])?.tokenize(',')
+		String comments = userData[2]
+		result.putAll(['username': username,
+		   'encodedPassword':encodedPassword,
+		   'groups':groups,
+		   'comments':comments])
+		
+		return result
+	}
 	
-	protected void withDbmCursor(String location, Closure closure){
+	/**
+	 * Utility method for working with a dbm cursor
+	 */
+	private void withDbmCursor(String location, Closure closure){
 		Database dbm = openDbm(location)
 		Cursor cursor
 		try {
@@ -58,7 +122,7 @@ class DbmService {
 		}
 	}
 	
-	protected File openFile(String location){
+	private File openFile(String location){
 		File file = new File(location)
 		if(file.exists() && file.canRead()){
 			return file
