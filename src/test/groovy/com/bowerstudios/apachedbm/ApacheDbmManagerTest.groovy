@@ -1,4 +1,4 @@
-package com.bowerstudios.dbm;
+package com.bowerstudios.apachedbm;
 
 import static org.junit.Assert.*;
 
@@ -9,16 +9,18 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class DbmServiceTest {
+import com.bowerstudios.apachedbm.ApacheDbmManager;
 
-	DbmService service
+class ApacheDbmManagerTest {
+
+	ApacheDbmManager service
 	String testDbm = "src/test/resources/testdbm"
 	
-	final Logger logger = LoggerFactory.getLogger(DbmServiceTest.class);
+	final Logger logger = LoggerFactory.getLogger(ApacheDbmManagerTest.class);
 	
 	@Before
 	public void setUp() throws Exception {
-		service = new DbmService()
+		service = new ApacheDbmManager()
 	}
 
 	@Test

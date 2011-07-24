@@ -1,8 +1,9 @@
-package com.bowerstudios.dbm
+package com.bowerstudios.apachedbm
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bowerstudios.apachedbm.ApacheDbmManager;
 import com.sleepycat.db.Cursor;
 import com.sleepycat.db.Database;
 import com.sleepycat.db.DatabaseConfig;
@@ -18,9 +19,9 @@ import com.sleepycat.db.OperationStatus;
  * @author Daniel Bower
  *
  */
-class DbmService {
+class ApacheDbmManager {
 
-	final Logger logger = LoggerFactory.getLogger(DbmService.class);
+	final Logger logger = LoggerFactory.getLogger(ApacheDbmManager.class);
 	
 	/**
 	 * Read all the user records in the file at location, and return them as a list
