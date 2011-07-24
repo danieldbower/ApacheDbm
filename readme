@@ -1,0 +1,6 @@
+ApacheDbm is a utility library for working with the Berkeley Databases that Apache can use for security.
+
+This library has been tested on Ubuntu 10.10, and requires access to a C library via JNI.  
+On Ubuntu, this means installing libdb4.8-java in all environments for which your app is deployed:
+sudo apt-get install libdb4.8-java
+
