@@ -18,6 +18,7 @@ manifest.mainAttributes(
 repositories {
     mavenCentral()
     mavenLocal()
+    flatDir name: 'localRepository', dirs: 'lib'
 }
 
 configurations {
@@ -36,5 +37,7 @@ dependencies {
 	compile group: 'ch.qos.logback', name:'logback-classic', version:'0.9.29'
     
     //database
-    compile group: 'berkeleydb', name:'je', version:'3.2.76'
+	compile name:'libdb4.8-java-4.8.30'
+	//compile group: 'berkeleydb', name:'je', version:'3.2.76'
+	//compile group: 'berkeleydb', name:'berkeleydb-native', version:'4.2'
 }
