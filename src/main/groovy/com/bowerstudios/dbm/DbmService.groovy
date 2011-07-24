@@ -3,9 +3,9 @@ package com.bowerstudios.dbm
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sleepycat.je.Environment;
-import com.sleepycat.je.EnvironmentConfig;
-
+import com.sleepycat.db.Database;
+import com.sleepycat.db.DatabaseConfig;
+import com.sleepycat.db.DatabaseType;
 
 class DbmService {
 
@@ -13,7 +13,7 @@ class DbmService {
 	
 	void readDbm(String location){
 		File dbmFile = openFile(location)
-		
+		Database dbm = openDbm(location)
 		
 	}
 	
@@ -30,16 +30,16 @@ class DbmService {
 	/**
 	 * Open a Dbm Database
 	 */
-	protected Environment openDbm(File dbmFile){
-		Environment dbmEnv
-		EnvironmentConfig dbmEnvConfig
+	protected Database openDbm(String dbmFile){
+		Database dbm
+		DatabaseConfig dbmConfig
 		
 		if(dbmFile){
-			dbmEnvConfig = new EnvironmentConfig()
-			dbmEnvConfig.setAllowCreate(true);
-						
-			dbmEnv = new Environment(dbmFile, dbmEnvConfig)
-			return dbmEnv
+			dbmConfig = new DatabaseConfig()
+			dbmConfig.setAllowCreate(true)
+			dbmConfig.setType(DatabaseType.HASH)
+			dbm = new Database(dbmFile, null, dbmConfig)
+			return dbm
 		}else{
 			return null
 		}
@@ -49,9 +49,9 @@ class DbmService {
 	/**
 	 * Close a Dbm Database
 	 */
-	protected void closeDbm(Environment dbmEnv){
-		if(dbmEnv){
-			dbmEnv.close()
+	protected void closeDbm(Database dbm){
+		if(dbm){
+			dbm.close()
 		}
 	}
 }

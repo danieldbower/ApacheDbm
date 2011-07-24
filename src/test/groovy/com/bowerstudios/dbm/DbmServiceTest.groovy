@@ -28,7 +28,7 @@ class DbmServiceTest {
 	
 	@Test
 	public void testOpenCloseDbm(){
-		def dbm = service.openDbm(service.openFile(testDbm))
+		def dbm = service.openDbm(testDbm)
 		assertNotNull(dbm)
 		service.closeDbm(dbm)
 		assertTrue(true)
