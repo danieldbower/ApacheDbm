@@ -47,41 +47,41 @@ class ApacheDbmManagerTest {
 	@Test
 	public void getUserOnlyFromDbm(){
 		String username = 'justUser'
-		Map user = service.getUserRecordFromDbm(testDbm, username)
+		ApacheDbmUser user = service.getUserRecordFromDbm(testDbm, username)
 		assertNotNull(user)
 		logger.debug(user.toString())
 		
-		assertEquals(username, user['username'])
-		assertNotNull(user['encodedPassword'])
-		assertNull(user['groups'])
-		assertNull(user['comments'])
+		assertEquals(username, user.username)
+		assertNotNull(user.encodedPassword)
+		assertNull(user.groups)
+		assertNull(user.comments)
 	}
 	
 	@Test
 	public void getUserAnd1GroupFromDbm(){
 		String username = 'userAnd1Group'
-		Map user = service.getUserRecordFromDbm(testDbm, username)
+		ApacheDbmUser user = service.getUserRecordFromDbm(testDbm, username)
 		assertNotNull(user)
 		logger.debug(user.toString())
 		
-		assertEquals(username, user['username'])
-		assertNotNull(user['encodedPassword'])
-		assertEquals('oneGroup', user['groups'][0])
-		assertNull(user['comments'])
+		assertEquals(username, user.username)
+		assertNotNull(user.encodedPassword)
+		assertEquals('oneGroup', user.groups[0])
+		assertNull(user.comments)
 	}
 	
 	@Test
 	public void getUserGroupAndCommentFromDbm(){
 		String username = 'userGroupAndComment'
-		Map user = service.getUserRecordFromDbm(testDbm, username)
+		ApacheDbmUser user = service.getUserRecordFromDbm(testDbm, username)
 		assertNotNull(user)
 		logger.debug(user.toString())
 		
-		assertEquals(username, user['username'])
-		assertNotNull(user['encodedPassword'])
-		assertEquals('oneGroup', user['groups'][0])
-		assertEquals('twoGroup', user['groups'][1])
-		assertEquals('thisIsComment', user['comments'])
+		assertEquals(username, user.username)
+		assertNotNull(user.encodedPassword)
+		assertEquals('oneGroup', user.groups[0])
+		assertEquals('twoGroup', user.groups[1])
+		assertEquals('thisIsComment', user.comments)
 	}
 
 }

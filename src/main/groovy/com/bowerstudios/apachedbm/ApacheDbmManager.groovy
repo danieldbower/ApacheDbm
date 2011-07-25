@@ -26,8 +26,8 @@ class ApacheDbmManager {
 	/**
 	 * Read all the user records in the file at location, and return them as a list
 	 */
-	List readAllRecordsFromDbm(String location){
-		List result = []
+	List<ApacheDbmUser> readAllRecordsFromDbm(String location){
+		List result = new ArrayList<ApacheDbmUser>()
 			
 		withDbmCursor(location){ Cursor cursor ->
 			// Cursors need a pair of DatabaseEntry objects to operate. These hold
@@ -39,7 +39,7 @@ class ApacheDbmManager {
 			// been read. All cursor operations return an OperationStatus, so just
 			// read until we no longer see OperationStatus.SUCCESS
 			while (cursor.getNext(key, value, LockMode.DEFAULT) == OperationStatus.SUCCESS) {
-				result.add(createUserRecordFromDatabaseEntries(null, key, value))
+				result.add(new ApacheDbmUser(null, key, value))
 			}
 		}
 		
@@ -49,8 +49,8 @@ class ApacheDbmManager {
 	/**
 	 * Get a user record with username  from the file at location
 	 */
-	Map getUserRecordFromDbm(String location, String username){
-		Map result = null
+	ApacheDbmUser getUserRecordFromDbm(String location, String username){
+		ApacheDbmUser result = null
 		
 		Database dbm = openDbm(location)
 		try {
@@ -60,7 +60,7 @@ class ApacheDbmManager {
 				userDataEntry , LockMode.DEFAULT)
 			
 			if(opStatus == OperationStatus.SUCCESS){
-				result = createUserRecordFromDatabaseEntries(username, null, userDataEntry)
+				result = new ApacheDbmUser(username, null, userDataEntry)
 			}else{
 				logger.debug("User username not found")
 			}
@@ -73,31 +73,6 @@ class ApacheDbmManager {
 				closeDbm(dbm)
 			}
 		}
-		
-		return result
-	}
-	
-	/**
-	 * Formats the response from the database in the given format
-	 */
-	Map createUserRecordFromDatabaseEntries(String username, DatabaseEntry key, DatabaseEntry value){
-		if(!username && key){
-			username = new String(key.getData(), "UTF-8")
-		}else if(!username && !key){
-			logger.error("Either username or key must be provided")
-			return null
-		}
-		
-		Map result = [:]
-		
-		List<String> userData = new String(value.getData(), "UTF-8").tokenize(':')
-		String encodedPassword = userData[0]
-		List<String> groups = (userData[1])?.tokenize(',')
-		String comments = userData[2]
-		result.putAll(['username': username,
-		   'encodedPassword':encodedPassword,
-		   'groups':groups,
-		   'comments':comments])
 		
 		return result
 	}
