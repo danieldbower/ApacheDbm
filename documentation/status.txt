@@ -1,0 +1,11 @@
+Keep tabs on what has been done and what is yet todo:
+
+COMPLETE AND TESTED:
+Read All Users
+Read One User
+
+TODO (In Order):
+Check Password of One User
+Add One User
+Delete One User
+Update One User
